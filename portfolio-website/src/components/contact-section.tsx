@@ -61,13 +61,7 @@ const contactInfo = [
     label: "GitHub",
     value: "github.com/Dev-saxena11",
     href: "https://github.com/Dev-saxena11",
-  },
-  {
-    icon: <Phone className="h-5 w-5" />,
-    label: "Phone",
-    value: "+91 84398 20581",
-    href: "tel:+918439820581",
-  },
+  }
 ];
 
 export function ContactSection() {
