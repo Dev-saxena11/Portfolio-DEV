@@ -1,0 +1,48 @@
+# Vercel Speed Insights Installation Report
+
+## Summary
+Successfully installed and configured Vercel Speed Insights for the Next.js portfolio project.
+
+## Implementation Details
+
+### 1. Documentation Review
+Fetched the latest official Vercel Speed Insights documentation from:
+https://vercel.com/docs/speed-insights/quickstart
+
+Confirmed the project uses Next.js 16.2.5 with App Router, which supports the latest Speed Insights integration pattern.
+
+### 2. Package Installation
+Installed `@vercel/speed-insights` version 2.0.0 using npm:
+- Command: `npm install @vercel/speed-insights`
+- Package added to dependencies in package.json
+- package-lock.json updated with new dependencies
+
+### 3. Code Changes
+Modified `src/app/layout.tsx`:
+- Added import: `import { SpeedInsights } from "@vercel/speed-insights/next";`
+- Added `<SpeedInsights />` component alongside the existing `<Analytics />` component
+- Placed within the `<body>` tag after the `<ThemeProvider>` closing tag
+- Follows the same pattern as the existing Vercel Analytics integration
+
+### 4. Verification
+✅ Build successful: `npm run build` completed without errors
+✅ TypeScript compilation: No type errors
+✅ Lint check: No new linting errors introduced by our changes
+✅ Static generation: All pages generated successfully
+
+## Files Modified
+- `package.json` - Added @vercel/speed-insights dependency
+- `package-lock.json` - Updated with new package dependencies
+- `src/app/layout.tsx` - Added SpeedInsights component and import
+
+## Next Steps
+To view Speed Insights data:
+1. Enable Speed Insights in the Vercel dashboard for this project
+2. Deploy the changes to Vercel
+3. After user visits, access Speed Insights in the dashboard to view performance metrics
+
+## Notes
+- The implementation follows the official Next.js App Router pattern
+- Speed Insights component is placed alongside the existing Analytics component
+- No breaking changes or configuration modifications required
+- The component will automatically track Core Web Vitals and performance metrics
