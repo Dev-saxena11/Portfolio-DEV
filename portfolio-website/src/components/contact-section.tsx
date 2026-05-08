@@ -162,7 +162,7 @@ export function ContactSection() {
             <div className="relative z-10">
               <h3 className="text-2xl font-black mb-4">Availability</h3>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                I'm currently a **B.Tech CSE Student** based in Bareilly, Uttar Pradesh, India. I'm open to summer internships, freelance projects, and remote opportunities worldwide.
+                I'm currently a B.Tech CSE Student based in Bareilly, Uttar Pradesh, India. I'm open to summer internships, freelance projects, and remote opportunities worldwide.
               </p>
             </div>
           </motion.div>
