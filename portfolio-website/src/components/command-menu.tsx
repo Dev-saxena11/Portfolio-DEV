@@ -48,9 +48,9 @@ export function CommandMenu({ open, setOpen }: { open: boolean; setOpen: (open: 
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        
+
         <CommandGroup heading="Navigation">
-          <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
+          <CommandItem onSelect={() => runCommand(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }))}>
             <User className="mr-2 h-4 w-4" />
             <span>About Me</span>
           </CommandItem>
@@ -63,9 +63,9 @@ export function CommandMenu({ open, setOpen }: { open: boolean; setOpen: (open: 
             <span>View Resume</span>
           </CommandItem>
         </CommandGroup>
-        
+
         <CommandSeparator />
-        
+
         <CommandGroup heading="Contact">
           <CommandItem onSelect={() => runCommand(() => window.location.href = 'mailto:saxenadev2021@gmail.com')}>
             <Mail className="mr-2 h-4 w-4" />
