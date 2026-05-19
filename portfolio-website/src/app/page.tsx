@@ -15,7 +15,7 @@ import { TypingAnimation } from "@/components/typing-animation";
 export default function Home() {
   return (
     <>
-      <main className="flex min-h-[90vh] flex-col items-center justify-center relative overflow-hidden px-6">
+      <main className="flex min-h-[90vh] flex-col items-center justify-center relative overflow-hidden px-6" id="home">
         <div className="z-10 flex flex-col items-center text-center max-w-4xl">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -67,7 +67,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-6"
           >
-            <Button size="lg" className="rounded-full px-10 h-14 text-lg shadow-[0_0_20px_rgba(110,89,255,0.3)] hover:shadow-[0_0_30px_rgba(110,89,255,0.5)] transition-all" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button size="lg" className="rounded-full px-10 h-14 text-lg shadow-[0_0_20px_rgba(110,89,255,0.3)] hover:shadow-[0_0_30px_rgba(110,89,255,0.5)] transition-all" onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
               View Portfolio <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg bg-background/30 backdrop-blur-md border-border/50 hover:bg-background/50 transition-all" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
