@@ -1,54 +1,33 @@
-# 🚀 Cyber-Futuristic Portfolio | Dev Saxena
+# Dev Saxena | Portfolio
 
-A high-fidelity, interactive, and premium portfolio website built with **Next.js 15**, **Tailwind CSS**, and **Framer Motion**. Designed with a neo-cyberpunk aesthetic, this portfolio features real-time GitHub integration, a functional contact system, and a floating AI assistant.
+Personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS v4, shadcn/ui (Base UI) and Framer Motion.
+Live site: https://dev-saxena.vercel.app
 
-![Portfolio Preview](https://img.shields.io/badge/Status-Live-success?style=for-the-badge&logo=vercel)
-![Tech Stack](https://img.shields.io/badge/Tech-MERN%20%2B%20Next.js-blue?style=for-the-badge)
+## What is in it
 
-## ✨ Key Features
+- Single-page layout: hero, about, skills, education, projects (with case-study dialogs), GitHub repos, certifications, contact.
+- Contact form posted to [Web3Forms](https://web3forms.com) (client-side, with a honeypot field for spam bots).
+- Command palette (`Ctrl+K` / `Cmd+K`) for jumping to sections, the resume and social links.
+- Canvas starfield background (static when the visitor prefers reduced motion).
+- Dark theme only.
+- Vercel Analytics and Speed Insights.
 
-- **🌌 Dynamic Starfield**: Immersive 3D starfield background with smooth animations.
-- **🤖 Floating Assistant**: An interactive robot assistant ("Hire Me" popup) that guides visitors.
-- **📊 GitHub Live Integration**: Fetches real-time repository data and statistics using the GitHub API.
-- **🎓 Academic Timeline**: Professional education section with 91% (B.Tech) and 96% (Schooling) scores.
-- **📜 Certifications**: Showcasing real-world credentials like NPTEL (Top 2%), AI Skills Passport, etc.
-- **📧 Functional Contact Form**: Powered by Web3Forms with built-in validation and success feedback.
-- **🌓 Forced Dark Mode**: Optimized for a sleek, premium dark-themed cyber aesthetic.
-- **⌨️ Command Palette**: Quick navigation and actions using `⌘K` or `Ctrl+K`.
-
-## 🛠️ Tech Stack
-
-- **Core**: Next.js 15 (App Router), TypeScript
-- **Styling**: Tailwind CSS, Lucide React (Icons)
-- **Animations**: Framer Motion
-- **Components**: Shadcn/ui
-- **Backend/API**: Web3Forms, GitHub API
-
-## 🚀 Getting Started
-
-First, install the dependencies:
+## Run locally
 
 ```bash
 npm install
-```
-
-Then, run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 📦 Build for Production
-
-```bash
+npm run dev     # http://localhost:3000
+npm run lint
 npm run build
 ```
 
-## 📄 License
+## Editing content
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Projects and case studies: `src/components/projects-section.tsx` (`live` is optional; add it only after checking the URL loads).
+- Certifications: `src/components/certifications-section.tsx`.
+- Resume: replace `public/resume.pdf`.
+- Share image used for link previews: `public/og.png` (1200x630).
 
----
-Built with ⚡ by [Dev Saxena](https://github.com/Dev-saxena11)
+## Stack
+
+Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Framer Motion · cmdk · lucide-react

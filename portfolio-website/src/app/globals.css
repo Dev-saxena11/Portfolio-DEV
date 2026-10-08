@@ -165,3 +165,12 @@
     color: var(--foreground);
   }
 }
+
+/* Anchor links and scrollIntoView land below the fixed header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

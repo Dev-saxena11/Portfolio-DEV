@@ -75,7 +75,7 @@ export function EducationSection() {
                   {item.duration}
                 </div>
 
-                <h3 className="text-2xl font-black mb-2 group-hover:text-primary transition-colors italic">
+                <h3 className="text-2xl font-black mb-2 group-hover:text-primary transition-colors">
                   {item.title}
                 </h3>
                 

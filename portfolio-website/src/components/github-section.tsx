@@ -1,29 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitBranch, Star, GitCommit } from "lucide-react";
+import { GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const repos = [
   {
     name: "BPIS_2026",
     description: "Bharat Policy Intelligence System: A data-driven decision support platform for government policy tracking.",
-    stars: 1,
-    forks: 0,
     language: "Python"
   },
   {
     name: "Aurelia",
     description: "Cloud-native luxury fashion boutique with AI-driven concierge, deployed on Google Cloud Run.",
-    stars: 1,
-    forks: 0,
     language: "HTML"
   },
   {
     name: "EXP-TRAC",
     description: "Lightweight JavaScript-based expense tracking application for daily personal finance management.",
-    stars: 0,
-    forks: 0,
     language: "JavaScript"
   }
 ];
@@ -45,7 +39,7 @@ export function GithubSection() {
             key={idx}
             href={`https://github.com/Dev-saxena11/${repo.name}`}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -60,10 +54,7 @@ export function GithubSection() {
               {repo.description}
             </p>
             <div className="flex items-center justify-between text-sm text-muted-foreground mt-auto">
-              <div className="flex items-center gap-4">
-                <span className="flex items-center gap-1"><Star className="h-4 w-4" /> {repo.stars}</span>
-                <span className="flex items-center gap-1"><GitCommit className="h-4 w-4" /> {repo.forks}</span>
-              </div>
+              <span className="text-xs">View repository</span>
               <span className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-xs font-medium">
                 {repo.language}
               </span>
@@ -73,7 +64,7 @@ export function GithubSection() {
       </div>
 
       <div className="mt-12 flex justify-center">
-        <Button variant="outline" className="rounded-full px-8" nativeButton={false} render={<a href="https://github.com/Dev-saxena11" target="_blank" rel="noreferrer" />}>
+        <Button variant="outline" className="rounded-full px-8" nativeButton={false} render={<a href="https://github.com/Dev-saxena11" target="_blank" rel="noopener noreferrer" />}>
           View My GitHub Profile
         </Button>
       </div>

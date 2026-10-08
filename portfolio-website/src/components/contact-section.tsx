@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const GithubIcon = (props: any) => (
+const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -24,7 +24,7 @@ const GithubIcon = (props: any) => (
   </svg>
 );
 
-const LinkedinIcon = (props: any) => (
+const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -64,38 +64,38 @@ const contactInfo = [
   }
 ];
 
+type Status = { kind: "idle" | "sending" | "success" | "error"; message: string };
+
 export function ContactSection() {
-  const [result, setResult] = React.useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [status, setStatus] = React.useState<Status>({ kind: "idle", message: "" });
+  const isSubmitting = status.kind === "sending";
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitting(true);
-    setResult("Sending...");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    const formData = new FormData(event.currentTarget);
-    formData.append("access_key", "16dd52a4-081e-4734-b3ce-9e532a47cc58"); // Updated with your real key
+    // Honeypot: real visitors never tick this hidden box; bots usually do
+    if (formData.get("botcheck")) return;
+
+    setStatus({ kind: "sending", message: "Sending..." });
+    formData.append("access_key", "16dd52a4-081e-4734-b3ce-9e532a47cc58");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        body: formData,
       });
-
       const data = await response.json();
 
       if (data.success) {
-        setResult("Message Sent Successfully! 👋");
-        (event.target as HTMLFormElement).reset();
+        setStatus({ kind: "success", message: "Message sent. Thank you, I will reply soon." });
+        form.reset();
       } else {
-        console.log("Error", data);
-        setResult(data.message);
+        setStatus({ kind: "error", message: data.message || "Could not send. Please email me directly." });
       }
-    } catch (error) {
-      console.log("Error", error);
-      setResult("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+    } catch {
+      setStatus({ kind: "error", message: "Something went wrong. Please try again or email me directly." });
     }
   };
 
@@ -111,14 +111,14 @@ export function ContactSection() {
           className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-bold text-primary backdrop-blur-md mb-6"
         >
           <Send className="mr-2 h-4 w-4" />
-          <span>LET'S CONNECT</span>
+          <span>LET&apos;S CONNECT</span>
         </motion.div>
         <h2 className="text-4xl font-black tracking-tight sm:text-6xl mb-6 bg-linear-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
           Get In Touch
         </h2>
         <div className="h-1.5 w-24 bg-linear-to-r from-primary to-purple-500 rounded-full mb-8"></div>
         <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-          Have a vision you want to bring to life? Let's collaborate and build the future of software together.
+          Have a vision you want to bring to life? Let&apos;s collaborate and build the future of software together.
         </p>
       </div>
 
@@ -131,7 +131,7 @@ export function ContactSection() {
                 key={idx}
                 href={item.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 whileHover={{ y: -8, scale: 1.05 }}
@@ -144,7 +144,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-1 opacity-70">{item.label}</p>
-                  <p className="text-base font-bold truncate group-hover:text-primary transition-colors">{item.value}</p>
+                  <p className="text-base font-bold break-all group-hover:text-primary transition-colors">{item.value}</p>
                 </div>
               </motion.a>
             ))}
@@ -162,7 +162,7 @@ export function ContactSection() {
             <div className="relative z-10">
               <h3 className="text-2xl font-black mb-4">Availability</h3>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                I'm currently a B.Tech CSE Student based in Bareilly, Uttar Pradesh, India. I'm open to summer internships, freelance projects, and remote opportunities worldwide.
+                I&apos;m currently a B.Tech CSE Student based in Bareilly, Uttar Pradesh, India. I&apos;m open to summer internships, freelance projects, and remote opportunities worldwide.
               </p>
             </div>
           </motion.div>
@@ -180,23 +180,26 @@ export function ContactSection() {
           <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/20 blur-[100px] rounded-full" />
 
           <form className="space-y-6 relative z-10" onSubmit={onSubmit}>
+            {/* Honeypot for spam bots (hidden from people and screen readers) */}
+            <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-3">
-                <label className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Name</label>
-                <Input name="name" required placeholder="Your Name" className="h-14 bg-background/30 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all" />
+                <label htmlFor="contact-name" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Name</label>
+                <Input id="contact-name" name="name" autoComplete="name" required placeholder="Your Name" className="h-14 bg-background/30 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all" />
               </div>
               <div className="space-y-3">
-                <label className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Email</label>
-                <Input name="email" type="email" required placeholder="email@example.com" className="h-14 bg-background/30 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all" />
+                <label htmlFor="contact-email" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Email</label>
+                <Input id="contact-email" name="email" type="email" autoComplete="email" required placeholder="email@example.com" className="h-14 bg-background/30 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all" />
               </div>
             </div>
             <div className="space-y-3">
-              <label className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Subject</label>
-              <Input name="subject" required placeholder="How can I help you?" className="h-14 bg-background/30 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all" />
+              <label htmlFor="contact-subject" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Subject</label>
+              <Input id="contact-subject" name="subject" required placeholder="How can I help you?" className="h-14 bg-background/30 border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all" />
             </div>
             <div className="space-y-3">
-              <label className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Message</label>
+              <label htmlFor="contact-message" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-2">Message</label>
               <Textarea
+                id="contact-message"
                 name="message"
                 required
                 placeholder="Tell me about your project..."
@@ -212,15 +215,23 @@ export function ContactSection() {
               {isSubmitting ? "🚀 Sending..." : "🚀 Initialize Connection"}
             </Button>
 
-            {result && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`text-center mt-4 font-bold ${result.includes("Successfully") ? "text-green-400" : "text-red-400"}`}
-              >
-                {result}
-              </motion.p>
-            )}
+            <div role="status" aria-live="polite" className="min-h-6 mt-4 text-center font-bold">
+              {status.kind !== "idle" && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={
+                    status.kind === "success"
+                      ? "text-green-400"
+                      : status.kind === "error"
+                      ? "text-red-400"
+                      : "text-muted-foreground"
+                  }
+                >
+                  {status.message}
+                </motion.p>
+              )}
+            </div>
           </form>
         </motion.div>
       </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 
 interface TypingAnimationProps {
   texts: string[];
@@ -27,8 +26,11 @@ export function TypingAnimation({
 
     if (isDeleting) {
       if (currentText === "") {
-        setIsDeleting(false);
-        setTextIndex((prev) => (prev + 1) % texts.length);
+        // short pause before the next phrase; also keeps setState out of the effect body
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setTextIndex((prev) => (prev + 1) % texts.length);
+        }, 300);
       } else {
         timer = setTimeout(() => {
           setCurrentText(fullText.substring(0, currentText.length - 1));

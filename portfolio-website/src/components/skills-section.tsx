@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { 
   Code2, 
   Terminal, 
-  Database, 
   Layers, 
   Cpu, 
   Settings
@@ -77,7 +76,7 @@ export function SkillsSection() {
               <div className="p-3 rounded-2xl bg-background/50 border border-white/10 text-primary shadow-xl">
                 {category.icon}
               </div>
-              <h3 className="text-2xl font-black italic">{category.title}</h3>
+              <h3 className="text-2xl font-black">{category.title}</h3>
             </div>
 
             <div className="flex flex-wrap gap-3">
@@ -93,7 +92,7 @@ export function SkillsSection() {
 
             {/* Decorative background icon */}
             <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-              {React.cloneElement(category.icon as React.ReactElement<any>, { className: "h-32 w-32" })}
+              {React.cloneElement(category.icon as React.ReactElement<{ className?: string }>, { className: "h-32 w-32" })}
             </div>
           </motion.div>
         ))}

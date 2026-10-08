@@ -27,13 +27,13 @@ export function AboutSection() {
           
           <div className="relative z-10 space-y-6">
             <p className="text-xl text-muted-foreground leading-relaxed">
-              I'm a <span className="text-foreground font-bold">B.Tech Computer Science student</span> with a deep passion for building <span className="text-primary font-bold">scalable intelligence</span> and modern web applications.
+              I&apos;m a <span className="text-foreground font-bold">B.Tech Computer Science student</span> with a deep passion for building <span className="text-primary font-bold">scalable intelligence</span> and modern web applications.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               My journey bridges the gap between <span className="text-foreground font-semibold">elegant UI design</span> and <span className="text-foreground font-semibold">robust data engineering</span>. I specialize in the MERN stack and have a strong foundation in Data Analytics.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Based in Bareilly, I'm constantly exploring new technologies and contributing to open-source projects. Whether it's crafting a high-fidelity interface or optimizing a database, I aim for excellence.
+              Based in Bareilly, I&apos;m constantly exploring new technologies and contributing to open-source projects. Whether it&apos;s crafting a high-fidelity interface or optimizing a database, I aim for excellence.
             </p>
           </div>
         </motion.div>

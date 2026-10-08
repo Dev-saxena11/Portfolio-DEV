@@ -62,9 +62,12 @@ export function CertificationsSection() {
             <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-cyan-950 transition-colors">
               <ShieldCheck className="h-6 w-6" />
             </div>
-            <h3 className="font-semibold text-sm sm:text-base leading-tight">
-              {cert.title}
-            </h3>
+            <div>
+              <h3 className="font-semibold text-sm sm:text-base leading-tight">
+                {cert.title}
+              </h3>
+              <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
+            </div>
           </motion.div>
         ))}
       </div>

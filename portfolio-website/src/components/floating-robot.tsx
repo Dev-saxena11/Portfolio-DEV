@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, X, Briefcase, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -152,6 +151,8 @@ export function FloatingRobot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close availability card" : "Open availability card"}
+        aria-expanded={isOpen}
         className="relative cursor-pointer transition-transform duration-300"
       >
         <RobotSVG />

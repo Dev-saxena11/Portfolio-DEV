@@ -31,7 +31,7 @@ export function Footer() {
             {[
               { name: "Home", href: "#home" },
               { name: "About", href: "#about" },
-              { name: "Skills", href: "#about" },
+              { name: "Skills", href: "#skills" },
               { name: "Projects", href: "#projects" },
               { name: "GitHub", href: "#github" },
               { name: "Contact", href: "#contact" },
@@ -103,7 +103,7 @@ export function Footer() {
             </a>
           </div>
           <p className="text-sm italic text-muted-foreground mt-2 opacity-80">
-            Let's build something amazing together! 🚀
+            Let&apos;s build something amazing together! 🚀
           </p>
         </div>
       </div>
